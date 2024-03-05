@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root {
+  --clr-black: #333;
+  --clr-white: #bbb;
+  --clr-primary: rgb(110, 136, 91);
+  --ff-primary: "Source Code Pro", monospace;
+}
+
+*,
+*::before {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--ff-primary);
+}
+
+body {
+  background: var(--clr-black);
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin-bottom: 25px;
+
+  a {
+    --width: 150px;
+    --height: 40px;
+    --depht: 8px;
+    --press-dist: 5px;
+    --hover-dist: 2px;
+    --radious: calc(var(--height) / 2);
+
+    background: var(--clr-primary);
+    color: var(--clr-black);
+
+    display: block;
+    width: var(--width);
+    height: var(--height);
+
+    border-radius: var(--radious);
+
+    text-align: center;
+    line-height: var(--height);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.8rem;
+
+    position: relative;
+
+
+    &::before {
+      --shadow-top-radious: calc(var(--radious) - 1px);
+      content: '';
+      width: var(--width);
+      height: var(--height);
+      border-radius: var(--shadow-top-radious) var(--shadow-top-radious) var(--radious) var(--radious);
+      position: absolute;
+      top: var(--depht);
+      left: 0;
+      z-index: -1;
+      background: color-mix(in srgb, var(--clr-primary) 80%, black 20%);
+    }
+
+    &:hover {
+      top: var(--hover-dist);
+
+      &::before {
+        top: calc(var(--depht) - var(--hover-dist));
+      }
+    }
+
+    &:active {
+      top: var(--press-dist);
+
+      &::before {
+        top: calc(var(--depht) - var(--press-dist));
+      }
+    }
+
+  }
+}
