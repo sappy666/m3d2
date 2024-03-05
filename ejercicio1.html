@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado" style="color:green;font-style: italic">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre" style="color:red;font-style: italic;"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto" style="color:red;font-style: italic;"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje" style="color:red;font-style: italic;"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+       
+
+        const errorNombre = document.querySelector('.errorNombre');
+        const errorAsunto = document.querySelector('.errorAsunto');
+        const errorMensaje = document.querySelector('.errorMensaje');
+
+        const form = document.getElementById('formulario');
+
+        form.addEventListener('submit', (e)=>{
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const asunto = document.getElementById('asunto').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            let valido = true;
+            const pattern = /^[A-Za-z\s]+$/; 
+            
+            errorNombre.innerHTML = '';
+            errorAsunto.innerHTML = '';
+            errorMensaje.innerHTML = '';
+            
+            if(!pattern.test(nombre)){
+                valido = false;
+                errorNombre.innerHTML = 'Solo caracteres alfabeticos';
+            }
+            if(!pattern.test(asunto)){
+                valido = false;
+                errorAsunto.innerHTML = 'Solo caracteres alfabeticos';
+            }
+            if(!pattern.test(mensaje)){
+                valido = false;
+                errorMensaje.innerHTML = 'Solo caracteres alfabeticos';
+            }
+
+            if(nombre === ''){
+                valido = false;
+                errorNombre.innerHTML = 'El nombre es requerido.';
+            }
+            if(asunto === ''){
+                valido = false;
+                errorAsunto.innerHTML = 'El asunto es requerido.';
+            }
+            if(mensaje === ''){
+                valido = false;
+                errorMensaje.innerHTML = 'El mensaje es requerido.';
+            }
+
+            if(valido){
+                console.log('valido');
+                console.log(document.forms['formulario']);
+            }
+        });
+    </script>
+</body>
+
+</html>
